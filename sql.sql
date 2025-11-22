@@ -49,4 +49,28 @@ VALUES
   (8, 8, '2025-11-04', 9),
   (9, 6, '2025-11-04', 3),
   (10, 4, '2025-11-05', 6),
+
   (11, 1, '2025-11-05', 4);
+
+
+SELECT * FROM products
+WHERE category_id = '2';
+
+
+SELECT * FROM products
+WHERE quantity < 30;
+
+
+SELECT 
+    SUM(sales.quantity_sold) 
+FROM sales
+WHERE sales.sale_date BETWEEN '2025-11-01' AND '2025-11-05';
+
+
+UPDATE products 
+SET quantity = quantity - 
+    (SELECT SUM(quantity_sold) 
+     FROM sales 
+     WHERE sales.product_id = products.id);
+
+SELECT * FROM products;
